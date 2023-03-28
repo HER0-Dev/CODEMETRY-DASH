@@ -150,14 +150,12 @@ nav li:hover{
   border: rgb(255, 0, 255) solid 5px;
   width: 1280px;
   height: 720px;
-  background-color: rgb(3, 29, 44);
+  /* background-color: rgb(3, 29, 44); */
   box-shadow:rgb(255, 0, 255) 0px 0px 10px;
 }
 
 canvas{
-  border: rgb(255, 255, 255) solid 5px;
-  width: 100px;
-  height: 100px;
+  border: rgb(223, 223, 223) solid 20px;
 }
 
 .path-info__item{
@@ -184,3 +182,4 @@ canvas{
   font-size: 30px;
   color: rgb(255, 255, 255);
 }
+
