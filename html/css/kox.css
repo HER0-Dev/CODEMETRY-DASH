@@ -150,14 +150,13 @@ nav li:hover{
   border: hsl(224, 100%, 50%) solid 5px;
   width: 75%;
   height: 720px;
-<<<<<<< HEAD
+
   /* background-color: rgb(3, 29, 44); */
   box-shadow:rgb(255, 0, 255) 0px 0px 10px;
 }
 
 canvas{
   border: rgb(223, 223, 223) solid 20px;
-=======
   background-color: rgb(7, 19, 26);
   box-shadow: hsl(224, 100%, 50%) 0px 0px 10px;
 }
@@ -167,7 +166,6 @@ canvas{
   width: 100px;
   height: 100px;
   background-image: url(http://pm1.narvii.com/6317/28aebb21dfa4af507f58c4414779b5ec9f2a3173_00.jpg);
->>>>>>> 3c410aa8c8a8695d2f1146c7bf0ad0d6b521b97a
 }
 
 .path-info__item{
@@ -193,14 +191,4 @@ canvas{
 .path-info__item__description{
   font-size: 30px;
   color: rgb(255, 255, 255);
-<<<<<<< HEAD
 }
-
-=======
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
-}
->>>>>>>
