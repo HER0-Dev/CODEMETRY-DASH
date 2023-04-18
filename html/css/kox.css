@@ -72,7 +72,7 @@ nav li:hover{
 }
 
 
-@media (max-width: 960px) {
+@media (max-width: 1000px) {
   nav .menu {
     width: 100%;
     height: 0;
@@ -160,17 +160,18 @@ nav li:hover{
   width: 1280px;
   height: 720px;
   box-shadow:hsl(224, 100%, 50%) 0px 0px 10px;
+  background-image: url(https://wydawnictwoagora.pl/wp-content/uploads/2022/03/Under-4MBs_BarackObama_20190417_WashingtonDC_CrownPublishingGroup_Photo-PariDukovic_Usage4_1154-cropped_web-458x620.jpeg);
+  background-repeat: no-repeat;
+  background-size:  cover;
+  background-position-x: center;
+  background-position-y: center;
 }
 
-
 canvas{
-  border: hsl(224, 100%, 50%) solid 5px; 
   width: 1280px;
   height: 720px;
   
 }
-
-
 
 .path-info__item{
   display: flex;
@@ -212,4 +213,52 @@ canvas{
   .path-info__item__title{
     font-size: 30px;
   }
+}
+
+.napisBlur{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+  color: red;
+  margin-top: 1000px;
+}
+
+@media(width < 1280px){
+  .game{
+    filter: blur(4px);
+    width: 50%;
+    height: 50%;
+    background-image: url(https://wydawnictwoagora.pl/wp-content/uploads/2022/03/Under-4MBs_BarackObama_20190417_WashingtonDC_CrownPublishingGroup_Photo-PariDukovic_Usage4_1154-cropped_web-458x620.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .napisBlur{
+    display: flex;
+    margin: auto;
+  }
+}
+
+@media(width < 680px){
+  .napisBlur{
+    font-size: 45px;
+  }
+}
+
+@media(width > 1280px){
+  .game{
+    background-image: none;
+  }
+}
+
+.spotify{
+  width: 70%;  
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
 }
