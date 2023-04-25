@@ -170,7 +170,6 @@ nav li:hover{
 canvas{
   width: 1280px;
   height: 720px;
-  
 }
 
 .path-info__item{
@@ -253,12 +252,12 @@ canvas{
   }
 }
 
-.spotify{
-  width: 70%;  
-  height: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
+
+@media (max-width: 620px){
+  .napisBlur{
+    font-size: 30px;
+  }
+    .nav .name{
+      font-size: 18px;
+    }
 }
