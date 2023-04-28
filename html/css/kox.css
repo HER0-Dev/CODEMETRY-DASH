@@ -160,16 +160,6 @@ nav li:hover{
   width: 1280px;
   height: 720px;
   box-shadow:hsl(224, 100%, 50%) 0px 0px 10px;
-  background-image: url(https://wydawnictwoagora.pl/wp-content/uploads/2022/03/Under-4MBs_BarackObama_20190417_WashingtonDC_CrownPublishingGroup_Photo-PariDukovic_Usage4_1154-cropped_web-458x620.jpeg);
-  background-repeat: no-repeat;
-  background-size:  cover;
-  background-position-x: center;
-  background-position-y: center;
-}
-
-canvas{
-  width: 1280px;
-  height: 720px;
 }
 
 .path-info__item{
@@ -237,6 +227,9 @@ canvas{
   .napisBlur{
     display: flex;
     margin: auto;
+  }
+  .score{
+    display: none;
   }
 }
 
