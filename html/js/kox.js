@@ -8,12 +8,13 @@ function floor(x, height) {
 
 var points = 0;
 var displayPoints = document.createElement("p");
-displayPoints.innerHTML = "Points: " + points;
+displayPoints.className = "score";
+displayPoints.innerHTML = "SCORE: " + points;
 document.body.appendChild(displayPoints);
 
 setInterval(function () {
     points += 100;
-    displayPoints.innerHTML = "Points: " + points;
+    displayPoints.innerHTML = "SCORE: " + points;
 }, 1000);
 
 document.addEventListener("keydown", function (event) {
@@ -90,28 +91,34 @@ var player = {
     y: 360,
     height: 40,
     width: 40,
-    velocity: 0, // prędkość gracza
-    jumpHeight: 80, // wysokość skoku
+    velocity: 0, // prędkość
+    jumpHeight: 80, // wysokość
+    jumpCount: 0, // liczba skoków
+    maxJumps: 2, //max skoków pod rząd
     applyGravity: function () {
         var platformBelow = world.getDistanceToFloor(this.x);
         this.currentDistanceAboveGround = world.height - this.y - platformBelow;
     },
 
     processGravity: function () {
-        this.velocity += world.gravity; // zwiększenie prędkości gracza o grawitację
-        this.y += this.velocity; // zmiana pozycji gracza o jego prędkość
+        this.velocity += world.gravity; // zwiększenie prędkości
+        this.y += this.velocity; // zmiana pozycji gracza
         var floorHeight = world.getDistanceToFloor(this.x, this.width);
         var topYofPlatform = world.height - floorHeight;
         if (this.y > topYofPlatform) {
             this.y = topYofPlatform;
-            this.velocity = 0; // zresetowanie prędkości gracza po dotknięciu podłoża
+            this.velocity = 0;
+            this.jumpCount = 0;
         }
     },
 
     jump: function () {
-        var radians = (80 * Math.PI) / 180; // konwersja kąta z stopni na radiany
-        var jumpVelocity = -this.jumpHeight * Math.sin(radians); // obliczenie prędkości skoku na podstawie kąta
-        this.velocity = jumpVelocity; // ustawienie prędkości gracza na przeciwną do wysokości skoku
+        if (this.jumpCount < this.maxJumps) {
+            var radians = (80 * Math.PI) / 180;
+            var jumpVelocity = -this.jumpHeight * Math.sin(radians);
+            this.velocity = jumpVelocity;
+            this.jumpCount++;
+        }
     },
 
     tick: function () {
