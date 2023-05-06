@@ -42,8 +42,11 @@
     </div>
 
     <script>
+
+
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+
         function floor(x, height) {
             this.x = x;
             this.width = 900;
@@ -137,7 +140,7 @@
             height: 40,
             width: 40,
             velocity: 0, // prędkość 
-            jumpHeight: 80, // wysokość 
+            jumpHeight: 70, // wysokość 
             jumpCount: 0, // liczba skoków
             maxJumps: 2, //max skoków pod rząd
             applyGravity: function () {
@@ -180,12 +183,27 @@
             },
         };
 
-
         function tick() {
             player.tick();
             world.tick();
             world.draw();
             player.draw();
+
+            if (points >= 3000) {
+                world.speed = 15; // zmiana prędkości gry
+            }
+
+            if (points >= 5000) {
+                world.speed = 20;
+            }
+
+            if (points >= 7000) {
+                world.speed = 25
+            }
+
+            if (points >= 9000) {
+                world.speed = 30
+            }
             var fps = window.setTimeout("tick()", 1000 / 60);
         }
         tick();

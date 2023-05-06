@@ -1,5 +1,6 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+
 function floor(x, height) {
     this.x = x;
     this.width = 900;
@@ -92,7 +93,7 @@ var player = {
     height: 40,
     width: 40,
     velocity: 0, // prędkość
-    jumpHeight: 80, // wysokość
+    jumpHeight: 70, // wysokość
     jumpCount: 0, // liczba skoków
     maxJumps: 2, //max skoków pod rząd
     applyGravity: function () {
