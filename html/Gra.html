@@ -92,7 +92,7 @@
                     return;
                 }
                 var previousTile = this.floorTiles[this.floorTiles.length - 1];
-                var randomHeight = Math.floor(Math.random() * this.highestFloor) + 30;
+                var randomHeight = Math.floor(Math.random() * (this.highestFloor + 20 + 20)) + 40;
                 var leftValue = previousTile.x + previousTile.width;
                 var next = new floor(leftValue, randomHeight);
                 this.floorTiles.push(next);
