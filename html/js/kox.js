@@ -45,7 +45,7 @@ var world = {
             return;
         }
         var previousTile = this.floorTiles[this.floorTiles.length - 1];
-        var randomHeight = Math.floor(Math.random() * this.highestFloor) + 30;
+        var randomHeight = Math.floor(Math.random() * (this.highestFloor + 20 + 20)) + 40;
         var leftValue = previousTile.x + previousTile.width;
         var next = new floor(leftValue, randomHeight);
         this.floorTiles.push(next);
@@ -141,6 +141,22 @@ function tick() {
     world.tick();
     world.draw();
     player.draw();
+
+    if (points >= 3000) {
+        world.speed = 15; // zmiana prędkości gry
+    }
+
+    if (points >= 5000) {
+        world.speed = 20;
+    }
+
+    if (points >= 7000) {
+        world.speed = 25;
+    }
+
+    if (points >= 9000) {
+        world.speed = 30;
+    }
     var fps = window.setTimeout("tick()", 1000 / 60);
 }
 tick();
