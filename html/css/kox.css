@@ -255,9 +255,10 @@ nav li:hover{
     }
 }
 
-.score{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
+.score {
+  position: absolute;
+  top: 17%;
+  left: 17%;
+  margin: 10px;
+  color: white;
 }

@@ -37,12 +37,16 @@
             <p class="pogo">Ta Gra Nie Obsługuje tej Rozdzielczości</p>
         </div>
         <div class="game">
+            <!-- <button type="submit" class="start">START</button> -->
             <canvas id="canvas" width="1280" height="720"></canvas>
+
         </div>
     </div>
 
     <script>
 
+
+        // function startGame() {
 
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
@@ -55,21 +59,32 @@
 
         var points = 0;
         var displayPoints = document.createElement("p");
-        displayPoints.className = 'score'
-        displayPoints.innerHTML = "SCORE: " + points;
+        displayPoints.className = "score";
+        displayPoints.innerHTML = "Punkty: " + points;
         document.body.appendChild(displayPoints);
 
         setInterval(function () {
             points += 100;
-            displayPoints.innerHTML = "SCORE: " + points;
+            displayPoints.innerHTML = "Punkty: " + points;
         }, 1000);
-
 
         document.addEventListener("keydown", function (event) {
             if (event.code === "Space") {
                 player.jump();
             }
         });
+
+
+        const texture = new Image();
+        texture.src = 'Logo PROKJEKT KOCOWTY.svg';
+
+
+        texture.onload = function () {
+
+            player.texture = texture;
+
+            ctx.drawImage(player.texture, player.x, player.y, player.width, player.height);
+        }
 
         var world = {
             height: 720,
@@ -139,8 +154,8 @@
             y: 360,
             height: 40,
             width: 40,
-            velocity: 0, // prędkość 
-            jumpHeight: 70, // wysokość 
+            velocity: 0, // prędkość
+            jumpHeight: 70, // wysokość
             jumpCount: 0, // liczba skoków
             maxJumps: 2, //max skoków pod rząd
             applyGravity: function () {
@@ -149,7 +164,7 @@
             },
 
             processGravity: function () {
-                this.velocity += world.gravity; // zwiększenie prędkości 
+                this.velocity += world.gravity; // zwiększenie prędkości
                 this.y += this.velocity; // zmiana pozycji gracza
                 var floorHeight = world.getDistanceToFloor(this.x, this.width);
                 var topYofPlatform = world.height - floorHeight;
@@ -183,6 +198,49 @@
             },
         };
 
+        function checkCollision(player, tile) {
+            var leftSideOfPlayer = player.x;
+            var rightSideOfPlayer = player.x + player.width;
+            var topOfPlayer = player.y - player.height;
+            var bottomOfPlayer = player.y;
+            var leftSideOfTile = tile.x;
+            var rightSideOfTile = tile.x + tile.width;
+            var topOfTile = world.height - tile.height;
+            var bottomOfTile = world.height;
+
+            if (player.x <= 0) {
+                cancelAnimationFrame(animationId);
+                gameOver = true;
+                ctx.font = "50px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("Twój wynik to " + score, canvas.width / 2 - 200, canvas.height / 2);
+                restartButton.style.display = "block";
+            }
+
+            if (
+                rightSideOfPlayer > leftSideOfTile &&
+                leftSideOfPlayer < rightSideOfTile &&
+                bottomOfPlayer > topOfTile &&
+                topOfPlayer < bottomOfTile &&
+                leftSideOfPlayer < leftSideOfTile //lewej ściany
+            ) {
+                return true;
+            }
+
+            return false;
+        }
+
+        function checkLeftWall(player) {
+            for (index in world.floorTiles) {
+                var tile = world.floorTiles[index];
+                if (checkCollision(player, tile)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         function tick() {
             player.tick();
             world.tick();
@@ -198,15 +256,20 @@
             }
 
             if (points >= 7000) {
-                world.speed = 25
+                world.speed = 25;
             }
 
             if (points >= 9000) {
-                world.speed = 30
+                world.speed = 30;
             }
             var fps = window.setTimeout("tick()", 1000 / 60);
         }
         tick();
+
+        // }
+
+        // const start = document.querySelector('.start');
+        // start.addEventListener('click', startGame);
     </script>
 
     <script src="kox.js"></script>

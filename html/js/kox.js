@@ -136,6 +136,49 @@ var player = {
     },
 };
 
+function checkCollision(player, tile) {
+    var leftSideOfPlayer = player.x;
+    var rightSideOfPlayer = player.x + player.width;
+    var topOfPlayer = player.y - player.height;
+    var bottomOfPlayer = player.y;
+    var leftSideOfTile = tile.x;
+    var rightSideOfTile = tile.x + tile.width;
+    var topOfTile = world.height - tile.height;
+    var bottomOfTile = world.height;
+
+    if (player.x <= 0) {
+        cancelAnimationFrame(animationId);
+        gameOver = true;
+        ctx.font = "50px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText("Twój wynik to " + score, canvas.width / 2 - 200, canvas.height / 2);
+        restartButton.style.display = "block";
+    }
+
+    if (
+        rightSideOfPlayer > leftSideOfTile &&
+        leftSideOfPlayer < rightSideOfTile &&
+        bottomOfPlayer > topOfTile &&
+        topOfPlayer < bottomOfTile &&
+        leftSideOfPlayer < leftSideOfTile //lewej ściany
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+function checkLeftWall(player) {
+    for (index in world.floorTiles) {
+        var tile = world.floorTiles[index];
+        if (checkCollision(player, tile)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function tick() {
     player.tick();
     world.tick();
