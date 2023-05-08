@@ -1,3 +1,5 @@
+// function startGame() {
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -10,12 +12,12 @@ function floor(x, height) {
 var points = 0;
 var displayPoints = document.createElement("p");
 displayPoints.className = "score";
-displayPoints.innerHTML = "SCORE: " + points;
+displayPoints.innerHTML = "Punkty: " + points;
 document.body.appendChild(displayPoints);
 
 setInterval(function () {
     points += 100;
-    displayPoints.innerHTML = "SCORE: " + points;
+    displayPoints.innerHTML = "Punkty: " + points;
 }, 1000);
 
 document.addEventListener("keydown", function (event) {
@@ -23,6 +25,15 @@ document.addEventListener("keydown", function (event) {
         player.jump();
     }
 });
+
+const texture = new Image();
+texture.src = "Logo PROKJEKT KOCOWTY.svg";
+
+texture.onload = function () {
+    player.texture = texture;
+
+    ctx.drawImage(player.texture, player.x, player.y, player.width, player.height);
+};
 
 var world = {
     height: 720,
@@ -203,3 +214,8 @@ function tick() {
     var fps = window.setTimeout("tick()", 1000 / 60);
 }
 tick();
+
+// }
+
+// const start = document.querySelector('.start');
+// start.addEventListener('click', startGame);
