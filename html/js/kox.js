@@ -26,14 +26,13 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-const texture = new Image();
-texture.src = "Logo PROKJEKT KOCOWTY.svg";
-
-texture.onload = function () {
-    player.texture = texture;
-
-    ctx.drawImage(player.texture, player.x, player.y, player.width, player.height);
+var textures = {
+    player: new Image(40, 40),
 };
+
+function render() {
+    textures.player.src = "CODEMETRY-DASHhtmlLogo PROKJEKT KOCOWTY.svg";
+}
 
 var world = {
     height: 720,
@@ -103,6 +102,7 @@ var player = {
     y: 360,
     height: 40,
     width: 40,
+    textures: player,
     velocity: 0, // prędkość
     jumpHeight: 70, // wysokość
     jumpCount: 0, // liczba skoków

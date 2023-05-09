@@ -216,6 +216,7 @@ nav li:hover{
 
 @media(width < 1280px){
   .game{
+    display: none;
     filter: blur(4px);
     width: 50%;
     height: 50%;
