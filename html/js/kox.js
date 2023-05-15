@@ -206,11 +206,10 @@ function tick() {
     if (points >= 5000) {
         world.speed = 20;
     }
-
+    
     if (points >= 7000) {
         world.speed = 25;
     }
-    
     if (points >= 9000) {
         world.speed = 30;
     }
