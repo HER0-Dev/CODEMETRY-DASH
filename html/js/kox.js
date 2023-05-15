@@ -1,4 +1,4 @@
-// function startGame() {
+
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -10,14 +10,14 @@ function floor(x, height) {
 }
 
 var points = 0;
-var displayPoints = document.createElement("p");
-displayPoints.className = "score";
-displayPoints.innerHTML = "Punkty: " + points;
-document.body.appendChild(displayPoints);
+// var displayPoints = document.createElement("p");
+// displayPoints.className = "score";
+// displayPoints.innerHTML = "Punkty: " + points;
+// document.body.appendChild(displayPoints);
 
 setInterval(function () {
     points += 100;
-    displayPoints.innerHTML = "Punkty: " + points;
+    // displayPoints.innerHTML = "Punkty: " + points;
 }, 1000);
 
 document.addEventListener("keydown", function (event) {
@@ -27,11 +27,11 @@ document.addEventListener("keydown", function (event) {
 });
 
 var textures = {
-    player: new Image(40, 40),
-};
+    player: new Image(40, 40)
+}
 
 function render() {
-    textures.player.src = "CODEMETRY-DASHhtmlLogo PROKJEKT KOCOWTY.svg";
+    textures.player.src = "CODEMETRY-DASH\html\Logo PROKJEKT KOCOWTY.svg";
 }
 
 var world = {
@@ -188,13 +188,16 @@ function checkLeftWall(player) {
     }
 
     return false;
-}
+};
 
 function tick() {
     player.tick();
     world.tick();
     world.draw();
     player.draw();
+
+    ctx.font = "55px Bebas Neue";
+    ctx.fillText("Punkty: " + points, 10, 50)
 
     if (points >= 3000) {
         world.speed = 15; // zmiana prędkości gry
@@ -207,15 +210,10 @@ function tick() {
     if (points >= 7000) {
         world.speed = 25;
     }
-
+    
     if (points >= 9000) {
         world.speed = 30;
     }
     var fps = window.setTimeout("tick()", 1000 / 60);
 }
 tick();
-
-// }
-
-// const start = document.querySelector('.start');
-// start.addEventListener('click', startGame);
