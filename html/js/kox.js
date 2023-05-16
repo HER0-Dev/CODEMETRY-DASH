@@ -1,3 +1,5 @@
+// function startGame() {
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -8,14 +10,9 @@ function floor(x, height) {
 }
 
 var points = 0;
-// var displayPoints = document.createElement("p");
-// displayPoints.className = "score";
-// displayPoints.innerHTML = "Punkty: " + points;
-// document.body.appendChild(displayPoints);
 
-setInterval(function () {
+ setInterval(function () {
     points += 100;
-    // displayPoints.innerHTML = "Punkty: " + points;
 }, 1000);
 
 document.addEventListener("keydown", function (event) {
@@ -23,14 +20,13 @@ document.addEventListener("keydown", function (event) {
         player.jump();
     }
 });
+   var textures = {
+       player: new Image(40, 40)
+   }
 
-var textures = {
-    player: new Image(40, 40)
-}
-
-function render() {
-    textures.player.src = "assets/images/player.png";
-}
+   function render() {
+       textures.player.src = "assets/images/player.png";
+   }
 
 var world = {
     height: 720,
@@ -101,8 +97,8 @@ var world = {
 var latestTile = world.floorTiles[world.floorTiles.length - 1];
 var leftFaceX = latestTile.x + latestTile.width;
 var leftFaceY = world.height - latestTile.height;
-console.log("Left face x coordinate: " + leftFaceX);
-console.log("Left face y coordinate: " + leftFaceY);
+console.log("X: " + leftFaceX);
+console.log("Y: " + leftFaceY);
 
 var player = {
     x: 160,
@@ -197,6 +193,7 @@ function checkLeftWall(player) {
     return false;
 };
 
+
 function tick() {
     player.tick();
     world.tick();
@@ -209,20 +206,18 @@ function tick() {
     var latestTile = world.floorTiles[world.floorTiles.length - 1];
     var leftFaceX = latestTile.x + latestTile.width;
     var leftFaceY = world.height - latestTile.height;
-    ctx.font = "16px Arial";
+    ctx.font = "16px Bebas Neue";
     ctx.fillStyle = "white";
     ctx.fillText("X: " + leftFaceX, 1200, 20);
     ctx.fillText("Y: " + leftFaceY, 1200, 40);
 
     if (checkLeftWall(player)) {
-        cancelAnimationFrame(animationId);
         gameOver = true;
-        ctx.font = "50px Arial";
+        ctx.font = "50px Bebas Neue";
         ctx.fillStyle = "white";
-        ctx.fillText("Lost", canvas.width / 2 - 200, canvas.height / 2);
+        ctx.fillText("Twój wynik to " + points, canvas.width / 2 - 200, canvas.height / 2);
         restartButton.style.display = "block";
     }
-    
 
     if (points >= 3000) {
         world.speed = 15; // zmiana prędkości gry
@@ -240,4 +235,19 @@ function tick() {
     }
     var fps = window.setTimeout("tick()", 1000 / 60);
 }
+  
 tick();
+//   var animationId;
+//   function gameLoop() {
+//     tick();
+//     if (!gameOver) {
+//       animationId = requestAnimationFrame(gameLoop);
+//     }
+//   }
+//   gameLoop();
+  
+
+
+// }
+// var startButton = document.getElementById("start");
+// startButton.addEventListener("click", startGame);
