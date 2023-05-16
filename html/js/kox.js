@@ -93,12 +93,13 @@ var world = {
         }
     },
 };
-
+setInterval(function(){
 var latestTile = world.floorTiles[world.floorTiles.length - 1];
 var leftFaceX = latestTile.x + latestTile.width;
 var leftFaceY = world.height - latestTile.height;
 console.log("X: " + leftFaceX);
 console.log("Y: " + leftFaceY);
+})
 
 var player = {
     x: 160,
