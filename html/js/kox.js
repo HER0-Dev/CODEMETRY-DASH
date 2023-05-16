@@ -1,5 +1,3 @@
-
-
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -31,7 +29,7 @@ var textures = {
 }
 
 function render() {
-    textures.player.src = "CODEMETRY-DASH\html\Logo PROKJEKT KOCOWTY.svg";
+    textures.player.src = "assets/images/player.png";
 }
 
 var world = {
@@ -59,6 +57,9 @@ var world = {
         var leftValue = previousTile.x + previousTile.width;
         var next = new floor(leftValue, randomHeight);
         this.floorTiles.push(next);
+ 
+        var xLeftFace = next.x;
+        var yLeftFace = world.height - next.height;
     },
 
     cleanOldTiles: function () {
@@ -97,12 +98,18 @@ var world = {
     },
 };
 
+var latestTile = world.floorTiles[world.floorTiles.length - 1];
+var leftFaceX = latestTile.x + latestTile.width;
+var leftFaceY = world.height - latestTile.height;
+console.log("Left face x coordinate: " + leftFaceX);
+console.log("Left face y coordinate: " + leftFaceY);
+
 var player = {
     x: 160,
     y: 360,
     height: 40,
     width: 40,
-    textures: player,
+    textures: {player: textures.player},
     velocity: 0, // prędkość
     jumpHeight: 70, // wysokość
     jumpCount: 0, // liczba skoków
@@ -143,8 +150,8 @@ var player = {
         ctx.lineWidth = "5";
         ctx.strokeStyle = "blue";
         ctx.stroke();
-        ctx.fillRect(player.x, player.y - player.height, this.height, this.width);
-    },
+        ctx.fillRect(player.x, player.y - player.height, this.width, this.height);
+    },    
 };
 
 function checkCollision(player, tile) {
@@ -180,8 +187,8 @@ function checkCollision(player, tile) {
 }
 
 function checkLeftWall(player) {
-    for (index in world.floorTiles) {
-        var tile = world.floorTiles[index];
+    for (var i = 0; i < world.floorTiles.length; i++) {
+        var tile = world.floorTiles[i];
         if (checkCollision(player, tile)) {
             return true;
         }
@@ -198,6 +205,24 @@ function tick() {
 
     ctx.font = "55px Bebas Neue";
     ctx.fillText("Punkty: " + points, 10, 50)
+
+    var latestTile = world.floorTiles[world.floorTiles.length - 1];
+    var leftFaceX = latestTile.x + latestTile.width;
+    var leftFaceY = world.height - latestTile.height;
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("X: " + leftFaceX, 1200, 20);
+    ctx.fillText("Y: " + leftFaceY, 1200, 40);
+
+    if (checkLeftWall(player)) {
+        cancelAnimationFrame(animationId);
+        gameOver = true;
+        ctx.font = "50px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText("Lost", canvas.width / 2 - 200, canvas.height / 2);
+        restartButton.style.display = "block";
+    }
+    
 
     if (points >= 3000) {
         world.speed = 15; // zmiana prędkości gry
