@@ -194,7 +194,6 @@ function checkLeftWall(player) {
     return false;
 };
 
-
 function tick() {
     player.tick();
     world.tick();
@@ -238,7 +237,6 @@ function tick() {
 }
   
 tick();
-//   var animationId;
 //   function gameLoop() {
 //     tick();
 //     if (!gameOver) {
