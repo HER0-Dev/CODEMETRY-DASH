@@ -25,7 +25,7 @@ document.addEventListener("keydown", function (event) {
    }
 
    function render() {
-       textures.player.src = "assets/images/player.png";
+       textures.player.src = 'CODEMETRY-DASH\html\Logo PROKJEKT KOCOWTY.svg';
    }
 
 var world = {
@@ -97,8 +97,8 @@ setInterval(function(){
 var latestTile = world.floorTiles[world.floorTiles.length - 1];
 var leftFaceX = latestTile.x + latestTile.width;
 var leftFaceY = world.height - latestTile.height;
-console.log("X: " + leftFaceX);
-console.log("Y: " + leftFaceY);
+// console.log("X: " + leftFaceX);
+// console.log("Y: " + leftFaceY);
 })
 
 var player = {
@@ -111,6 +111,7 @@ var player = {
     jumpHeight: 70, // wysokość
     jumpCount: 0, // liczba skoków
     maxJumps: 2, //max skoków pod rząd
+    src: 'CODEMETRY-DASH\html\Logo PROKJEKT KOCOWTY.svg',
     applyGravity: function () {
         var platformBelow = world.getDistanceToFloor(this.x);
         this.currentDistanceAboveGround = world.height - this.y - platformBelow;
@@ -208,8 +209,8 @@ function tick() {
     var leftFaceY = world.height - latestTile.height;
     ctx.font = "16px Bebas Neue";
     ctx.fillStyle = "white";
-    ctx.fillText("X: " + leftFaceX, 1200, 20);
-    ctx.fillText("Y: " + leftFaceY, 1200, 40);
+    ctx.fillText("X: " + leftFaceX, 1240, 20);
+    ctx.fillText("Y: " + leftFaceY, 1240, 40);
 
     if (checkLeftWall(player)) {
         gameOver = true;
@@ -237,13 +238,12 @@ function tick() {
 }
   
 tick();
-//   function gameLoop() {
+//    function gameLoop() {
 //     tick();
-//     if (!gameOver) {
-//       animationId = requestAnimationFrame(gameLoop);
-//     }
-//   }
-//   gameLoop();
+//      if (!gameOver) {
+//        animationId = requestAnimationFrame(gameLoop);
+//      }
+//   }   gameLoop();
   
 
 
