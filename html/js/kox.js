@@ -21,11 +21,11 @@ document.addEventListener("keydown", function (event) {
     }
 });
    var textures = {
-       player: new Image(40, 40)
+       player: new Image(40, 40) 
    }
 
    function render() {
-       textures.player.src = 'CODEMETRY-DASH\html\Logo PROKJEKT KOCOWTY.svg';
+       textures.player.src = "../Logo PROKJEKT KOCOWTY.svg";
    }
 
 var world = {
@@ -149,6 +149,7 @@ var player = {
         ctx.strokeStyle = "blue";
         ctx.stroke();
         ctx.fillRect(player.x, player.y - player.height, this.width, this.height);
+        ctx.drawImage(textures.player, player.x, player.y - player.height, this.width, this.height)
     },    
 };
 
@@ -218,6 +219,7 @@ function tick() {
         ctx.fillStyle = "white";
         ctx.fillText("Twój wynik to " + points, canvas.width / 2 - 200, canvas.height / 2);
         restartButton.style.display = "block";
+        // dsaa
     }
 
     if (points >= 3000) {
