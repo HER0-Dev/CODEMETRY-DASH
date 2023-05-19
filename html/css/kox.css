@@ -263,3 +263,9 @@ nav li:hover{
   margin: 10px;
   color: white;
 }
+
+@media(width < 530px){
+  .name, #down{
+    font-size: 5px;
+  }
+}

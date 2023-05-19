@@ -196,6 +196,8 @@ function checkLeftWall(player) {
     return false;
 };
 
+var gamePause = false
+
 function tick() {
     player.tick();
     world.tick();
@@ -213,15 +215,19 @@ function tick() {
     ctx.fillText("X: " + leftFaceX, 1240, 20);
     ctx.fillText("Y: " + leftFaceY, 1240, 40);
 
+// setInterval(function(){
     if (checkLeftWall(player)) {
         gameOver = true;
         ctx.font = "50px Bebas Neue";
         ctx.fillStyle = "white";
         ctx.fillText("Twój wynik to " + points, canvas.width / 2 - 200, canvas.height / 2);
-        restartButton.style.display = "block";
-        // dsaa
+        ctx.fillText("Kliknij F5 aby zagrac ponownie!", canvas.width / 2 - 300, canvas.height / 2 + 50)
+        gamePause = true
     }
 
+
+
+// } )
     if (points >= 3000) {
         world.speed = 15; // zmiana prędkości gry
     }
@@ -236,7 +242,9 @@ function tick() {
     if (points >= 9000) {
         world.speed = 30;
     }
+    if(!gamePause){
     var fps = window.setTimeout("tick()", 1000 / 60);
+    }
 }
   
 tick();
