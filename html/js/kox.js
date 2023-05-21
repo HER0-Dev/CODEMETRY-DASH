@@ -215,7 +215,7 @@ function tick() {
     ctx.fillText("X: " + leftFaceX, 1240, 20);
     ctx.fillText("Y: " + leftFaceY, 1240, 40);
 
-// setInterval(function(){
+
     if (checkLeftWall(player)) {
         gameOver = true;
         ctx.font = "50px Bebas Neue";
@@ -225,9 +225,6 @@ function tick() {
         gamePause = true
     }
 
-
-
-// } )
     if (points >= 3000) {
         world.speed = 15; // zmiana prędkości gry
     }
@@ -248,15 +245,3 @@ function tick() {
 }
   
 tick();
-//    function gameLoop() {
-//     tick();
-//      if (!gameOver) {
-//        animationId = requestAnimationFrame(gameLoop);
-//      }
-//   }   gameLoop();
-  
-
-
-// }
-// var startButton = document.getElementById("start");
-// startButton.addEventListener("click", startGame);
