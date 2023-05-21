@@ -267,3 +267,11 @@ nav li:hover{
     font-size: 5px;
   }
 }
+
+.infomacje{
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 50px;
+  color: white;
+  margin-top: 50px
+}
